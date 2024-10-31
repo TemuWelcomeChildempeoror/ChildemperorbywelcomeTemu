@@ -83,7 +83,12 @@ t.Name = ToolName
 t.RequiresHandle = false
 t.CanBeDropped = false
 t.Parent = game.Players.LocalPlayer.Backpack
-t.Activated:Connect(function()loadstring(game:HttpGet("https://pastebin.com/raw/fhq0hUmB"))()
+t.Activated:Connect(function()local sound = Instance.new("Sound")
+sound.SoundId = "rbxassetid://9119701508"
+sound.Volume = 1
+sound.Parent = workspace
+sound:Play()
+loadstring(game:HttpGet("https://pastebin.com/raw/fhq0hUmB"))()
 local a = Instance.new("Animation")
 a.AnimationId = "rbxassetid://" .. Animation
 local p = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(a)
@@ -167,7 +172,12 @@ t.Name = ToolName
 t.RequiresHandle = false
 t.CanBeDropped = false
 t.Parent = game.Players.LocalPlayer.Backpack
-t.Activated:Connect(function()loadstring(game:HttpGet("https://pastebin.com/raw/AFqktdSE"))()
+t.Activated:Connect(function()local sound = Instance.new("Sound")
+sound.SoundId = "rbxassetid://365003340"
+sound.Volume = 1
+sound.Parent = workspace
+sound:Play()
+loadstring(game:HttpGet("https://pastebin.com/raw/AFqktdSE"))()
 local a = Instance.new("Animation")
 a.AnimationId = "rbxassetid://" .. Animation
 local p = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(a)
@@ -182,7 +192,12 @@ t.Name = ToolName
 t.RequiresHandle = false
 t.CanBeDropped = false
 t.Parent = game.Players.LocalPlayer.Backpack
-t.Activated:Connect(function()local ReplicatedStorage = game:GetService("ReplicatedStorage")
+t.Activated:Connect(function()local sound = Instance.new("Sound")
+sound.SoundId = "rbxassetid://9075958058"
+sound.Volume = 1
+sound.Parent = workspace
+sound:Play()
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local EmitBatch2 = ReplicatedStorage.Resources.Fang.RockExplode["GoodSmoke3"].emit:Clone()
 local player = game.Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
