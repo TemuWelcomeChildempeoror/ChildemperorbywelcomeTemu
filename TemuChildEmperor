@@ -83,45 +83,8 @@ t.Name = ToolName
 t.RequiresHandle = false
 t.CanBeDropped = false
 t.Parent = game.Players.LocalPlayer.Backpack
-t.Activated:Connect(function()local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local EmitBatch2 = ReplicatedStorage.Resources.SplitCounter.TPNEW["TP"].Attachment:Clone()
-local player = game.Players.LocalPlayer
-local character = player.Character or player.CharacterAdded:Wait()
-
-EmitBatch2.Parent = character:WaitForChild("HumanoidRootPart")
-for i = 1, 13 do
-    task.wait(.1)
-for _, child in ipairs(EmitBatch2:GetChildren()) do
-	if child:IsA("ParticleEmitter") then
-		child:Emit(15)
-	end
-end
-end
-
-local soundeffect = Instance.new("Sound")
-soundeffect.SoundId = "rbxassetid://8406997653"
-soundeffect.Parent = game.Players.LocalPlayer.Character.Torso
-soundeffect:Play()
-soundeffect.Volume = 3
-    task.wait(1.5)
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local EmitBatch2 = ReplicatedStorage.Resources.KJEffects["fine...Emit"].EmitBatch2:Clone()
-local player = game.Players.LocalPlayer
-local character = player.Character or player.CharacterAdded:Wait()
-
-EmitBatch2.Parent = character:WaitForChild("HumanoidRootPart")
-
-for _, child in ipairs(EmitBatch2:GetChildren()) do
-	if child:IsA("ParticleEmitter") then
-		child:Emit(14)
-	end
-end
-    Anim:Stop()
-    end
-
-end
-local sound = Instance.new("Sound")
-sound.SoundId = "rbxassetid://7805445578"
+t.Activated:Connect(function()local sound = Instance.new("Sound")
+sound.SoundId = "rbxassetid://9119701508"
 sound.Volume = 1
 sound.Parent = workspace
 sound:Play()
@@ -373,44 +336,7 @@ t.Name = ToolName
 t.RequiresHandle = false
 t.CanBeDropped = false
 t.Parent = game.Players.LocalPlayer.Backpack
-t.Activated:Connect(function()local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local EmitBatch2 = ReplicatedStorage.Resources.SplitCounter.TPNEW["TP"].Attachment:Clone()
-local player = game.Players.LocalPlayer
-local character = player.Character or player.CharacterAdded:Wait()
-
-EmitBatch2.Parent = character:WaitForChild("HumanoidRootPart")
-for i = 1, 13 do
-    task.wait(.1)
-for _, child in ipairs(EmitBatch2:GetChildren()) do
-	if child:IsA("ParticleEmitter") then
-		child:Emit(15)
-	end
-end
-end
-
-local soundeffect = Instance.new("Sound")
-soundeffect.SoundId = "rbxassetid://8406997653"
-soundeffect.Parent = game.Players.LocalPlayer.Character.Torso
-soundeffect:Play()
-soundeffect.Volume = 3
-    task.wait(1.5)
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local EmitBatch2 = ReplicatedStorage.Resources.KJEffects["fine...Emit"].EmitBatch2:Clone()
-local player = game.Players.LocalPlayer
-local character = player.Character or player.CharacterAdded:Wait()
-
-EmitBatch2.Parent = character:WaitForChild("HumanoidRootPart")
-
-for _, child in ipairs(EmitBatch2:GetChildren()) do
-	if child:IsA("ParticleEmitter") then
-		child:Emit(14)
-	end
-end
-    Anim:Stop()
-    end
-
-end
-local sound = Instance.new("Sound")
+t.Activated:Connect(function()local sound = Instance.new("Sound")
 sound.SoundId = "rbxassetid://9075958058"
 sound.Volume = 1
 sound.Parent = workspace
