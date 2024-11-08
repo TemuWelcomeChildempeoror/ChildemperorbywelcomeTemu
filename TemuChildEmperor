@@ -1,605 +1,134 @@
---- Services
-local Players = game:GetService("Players")
-local TweenService = game:GetService("TweenService")
+local CharacterName = "Mech Prodigy"
+local CharacterIcon = 92546421660702
+local function Script()loadstring(game:HttpGet("https://raw.githubusercontent.com/TemuWelcomeChildempeoror/ChildemperorbywelcomeTemu/refs/heads/main/TemuChildEmperor"))()
+end
 
--- Local Player
-local player = Players.LocalPlayer
+
+local player = game.Players.LocalPlayer
 local playerGui = player:WaitForChild("PlayerGui")
 
--- Color tweening function
-local function tweenColor(imageLabel, startColor, endColor, duration)
-    local tweenInfo = TweenInfo.new(duration, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut, -1, true)
-    local tween = TweenService:Create(imageLabel, tweenInfo, {ImageColor3 = endColor})
-    tween:Play()
-end
+local topbarPlus = playerGui:WaitForChild("TopbarPlus")
+local topbarContainer = topbarPlus:WaitForChild("TopbarContainer")
+local unnamedIcon = topbarContainer:WaitForChild("UnnamedIcon")
+local dropdownContainer = unnamedIcon:WaitForChild("DropdownContainer")
+local dropdownFrame = dropdownContainer:WaitForChild("DropdownFrame")
 
--- GUI and color adjustment function
-local function updateBarColor()
-    local screenGui = playerGui:FindFirstChild("ScreenGui")
-    if not screenGui then return end
+local charFrame = Instance.new("Frame")
+charFrame.Name = "Char"
+charFrame.Parent = dropdownFrame
+charFrame.BackgroundTransparency = 1
+charFrame.BorderColor3 = Color3.fromRGB(27, 42, 53)
+charFrame.BorderSizePixel = 1
+charFrame.LayoutOrder = 14
+charFrame.Size = UDim2.new(1, 0, 0, 32)
+charFrame.SizeConstraint = Enum.SizeConstraint.RelativeXY
+charFrame.ZIndex = 1
 
-    local magicHealthFrame = screenGui:FindFirstChild("MagicHealth")
-    if not magicHealthFrame then return end
+local iconButton = Instance.new("TextButton")
+iconButton.Name = "IconButton"
+iconButton.Parent = charFrame
+iconButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+iconButton.BackgroundTransparency = 0.5
+iconButton.BorderSizePixel = 0
+iconButton.Text = ""
+iconButton.TextScaled = false
+iconButton.TextSize = 8
+iconButton.TextTransparency = 1
+iconButton.TextWrapped = false
+iconButton.Position = UDim2.new(0, 0, 0, 0)
+iconButton.Size = UDim2.new(1, 0, 1, 0)
+iconButton.SizeConstraint = Enum.SizeConstraint.RelativeXY
+iconButton.Font = Enum.Font.Legacy
+iconButton.LayoutOrder = 0
 
-    local healthFrame = magicHealthFrame:FindFirstChild("Health")
-    if not healthFrame then return end
+local iconImage = Instance.new("ImageLabel")
+iconImage.Name = "IconImage"
+iconImage.Parent = iconButton
+iconImage.AnchorPoint = Vector2.new(0, 0.5)
+iconImage.BackgroundTransparency = 1
+iconImage.BorderColor3 = Color3.fromRGB(27, 42, 53)
+iconImage.BorderSizePixel = 1
+iconImage.Image = "rbxassetid://" .. CharacterIcon
+iconImage.ImageColor3 = Color3.fromRGB(255, 255, 255)
+iconImage.ImageRectOffset = Vector2.new(0, 0)
+iconImage.ImageRectSize = Vector2.new(0, 0)
+iconImage.ImageTransparency = 0
+iconImage.LayoutOrder = 0
+iconImage.Position = UDim2.new(0, 12, 0, 15)
+iconImage.Size = UDim2.new(0, 24, 0, 24)
+iconImage.SizeConstraint = Enum.SizeConstraint.RelativeXY
+iconImage.TileSize = UDim2.new(1, 0, 1, 0)
+iconImage.SliceScale = 1
+iconImage.ZIndex = 11
 
-    local barFrame = healthFrame:FindFirstChild("Bar")
-    if not barFrame then return end
+local iconLabel = Instance.new("TextLabel")
+iconLabel.Name = "IconLabel"
+iconLabel.Parent = iconButton
+iconLabel.AnchorPoint = Vector2.new(0, 0.5)
+iconLabel.BackgroundTransparency = 1
+iconLabel.BorderColor3 = Color3.fromRGB(27, 42, 53)
+iconLabel.BorderSizePixel = 1
+iconLabel.Font = Enum.Font.GothamMedium
+iconLabel.LayoutOrder = 0
+iconLabel.Text = CharacterName
+iconLabel.TextColor3 = Color3.fromRGB(255, 216, 19)
+iconLabel.TextSize = 14
+iconLabel.TextScaled = false
+iconLabel.TextTransparency = 0
+iconLabel.TextWrapped = false
+iconLabel.TextXAlignment = Enum.TextXAlignment.Left
+iconLabel.TextYAlignment = Enum.TextYAlignment.Center
+iconLabel.Position = UDim2.new(0, 44, 0, 15)
+iconLabel.Size = UDim2.new(1, -56, 0, 7)
+iconLabel.TextStrokeTransparency = 1
+iconLabel.ZIndex = 11
 
-    -- Remove the outline frame if it exists
-    local existingOutline = barFrame:FindFirstChild("OutlineFrame")
-    if existingOutline then
-        existingOutline:Destroy()
-    end
-
-    -- Create the bar inside the frame
-    local bar = barFrame:FindFirstChild("Bar")
-    if bar and bar:IsA("ImageLabel") then
-        -- Set initial color to white
-        bar.ImageColor3 = Color3.fromRGB(6, 57, 225)  -- Blue
-        -- Smooth transition from blue to blue
-        tweenColor(bar, Color3.fromRGB(6, 57, 225), Color3.fromRGB(0, 0, 255), 2)
-    end
-end
-
--- Player setup
-local function onCharacterAdded()
-    updateBarColor()
-end
-
-player.CharacterAdded:Connect(onCharacterAdded)
-if player.Character then
-    onCharacterAdded()
-end
-
-local screenGui = Instance.new("ScreenGui")
-screenGui.Name = "UIContainer"
-screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-
-local creditText = Instance.new("TextLabel")
-creditText.Size = UDim2.new(1, 0, 0, 20) -- size
-creditText.Position = UDim2.new(0, 0, 0, 0) -- Top
-creditText.BackgroundTransparency = 1 -- bg
-creditText.Text = "CHILD EMPEROR BY Welcome ON DISCORD"
-creditText.TextColor3 = Color3.new(1, 1, 1) --clr
-creditText.Font = Enum.Font.SourceSans
-creditText.TextScaled = true -- scale
-creditText.TextTransparency = 0.9 --opaque
-creditText.Parent = screenGui
-
-game.StarterGui:SetCore("SendNotification", {
-        Title = "CHILD EMPEROR BY WELCOME";
-        Text = " Made By WELCOME On Discord";
+local function onErrorNotification()
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "NOTIFICATION";
+        Text = "YOU'RE ALREADY PLAYING AS THIS CHARACTER.";
+        Icon = "";
         Duration = 5;
-        Icon = "rbxassetid://1728569369781000"; -- image id if you don't wanna add it leave it like that
-}) 
-
-for _, tools in ipairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-if tools:IsA("Tool") then
-tools:Destroy()
-end
+    })
 end
 
-local ToolName = "Plasma Cannon"
-local Animation = 13073745835
+local function handleIconButtonClick()
+    Script()
+    local character = player.Character
+    if not character then
+        return
+    end
 
-local t = Instance.new("Tool")
-t.Name = ToolName
-t.RequiresHandle = false
-t.CanBeDropped = false
-t.Parent = game.Players.LocalPlayer.Backpack
-t.Activated:Connect(function()local sound = Instance.new("Sound")
-sound.SoundId = "rbxassetid://17325675061"
-sound.Volume = 1
-sound.Parent = workspace
-sound:Play()
-local location = game.ReplicatedStorage.Resources.Sorcerer["WallFX"].FirstSlam.Attachment
-local vfx = location:Clone()
-vfx.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+    local scriptHasRun = character:FindFirstChild("ScriptHasRun")
+    if scriptHasRun and scriptHasRun.Value then
+        onErrorNotification()
+        return
+    end
 
--- Emit particles for the first effect
-for _, child in ipairs(vfx:GetChildren()) do
-    if child:IsA("ParticleEmitter") then
-        -- Set the color to white
-        child.Color = ColorSequence.new(Color3.new(0, 255, 255)) -- White color
-        child:Emit(15)
-        child.Enabled = true
+    if not scriptHasRun then
+        scriptHasRun = Instance.new("BoolValue")
+        scriptHasRun.Name = "ScriptHasRun"
+        scriptHasRun.Value = true
+        scriptHasRun.Parent = character
+    else
+        scriptHasRun.Value = true
     end
 end
 
--- Destroy the first effect after 0.3 seconds
-task.delay(0.3, function()
-    vfx:Destroy()
+iconButton.MouseButton1Click:Connect(handleIconButtonClick)
+
+print("Script Loaded 0 cap")  -- Debug print to confirm script initialization
+
+player.CharacterAdded:Connect(function(character)
+    local scriptHasRun = character:FindFirstChild("ScriptHasRun")
+    if scriptHasRun then
+        scriptHasRun.Value = false
+    end
 end)
 
-
--- Second effect (Limitless Barrier Core BarrierFX)
-local location2 = game.ReplicatedStorage.Resources.Sorcerer["LimitlessBarrier"].Core.BarrierFX
-local vfx2 = location2:Clone()
-vfx2.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
-
--- Emit particles for the second effect
-for _, child in ipairs(vfx2:GetChildren()) do
-    if child:IsA("ParticleEmitter") then
-        -- Set the color to white
-        child.Color = ColorSequence.new(Color3.new(0, 255, 255)) -- White color
-        child:Emit(15)
-        child.Enabled = true
+if player.Character then
+    local scriptHasRun = player.Character:FindFirstChild("ScriptHasRun")
+    if scriptHasRun then
+        scriptHasRun.Value = false
     end
 end
-
--- Destroy the second effect after 1 second
-task.delay(1, function()
-    vfx2:Destroy()
-end)
-
-
--- Third effect (Limitless Barrier Core Appear)
-local location3 = game.ReplicatedStorage.Resources.Sorcerer["LimitlessBarrier"].Core.Appear
-local vfx3 = location3:Clone()
-vfx3.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
-
--- Emit particles for the third effect
-for _, child in ipairs(vfx3:GetChildren()) do
-    if child:IsA("ParticleEmitter") then
-        -- Set the color to white
-        child.Color = ColorSequence.new(Color3.new(0, 255, 255)) -- White color
-        child:Emit(15)
-        child.Enabled = true
-    end
-end
-
--- Destroy the third effect after 1 second (you can adjust the timing as needed)
-task.delay(1, function()
-    vfx3:Destroy()
-end)
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local EmitBatch2 = ReplicatedStorage.Resources.Fang.RockExplode["GoodSmoke3"].emit:Clone()
-local player = game.Players.LocalPlayer
-local character = player.Character or player.CharacterAdded:Wait()
-
-EmitBatch2.Parent = character:WaitForChild("HumanoidRootPart")
-
-for _, child in ipairs(EmitBatch2:GetChildren()) do
-	if child:IsA("ParticleEmitter") then
-		child:Emit(4)
-	end
-end
-
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local EmitBatch2 = ReplicatedStorage.Resources.Fang.RockExplode["GoodSmoke3"].Attachment:Clone()
-local player = game.Players.LocalPlayer
-local character = player.Character or player.CharacterAdded:Wait()
-
-EmitBatch2.Parent = character:WaitForChild("HumanoidRootPart")
-
-for _, child in ipairs(EmitBatch2:GetChildren()) do
-	if child:IsA("ParticleEmitter") then
-		child:Emit(4)
-	end
-end
-
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local EmitBatch2 = ReplicatedStorage.Resources.Fang.RockExplode["GoodSmoke3"].smoke:Clone()
-local player = game.Players.LocalPlayer
-local character = player.Character or player.CharacterAdded:Wait()
-
-EmitBatch2.Parent = character:WaitForChild("HumanoidRootPart")
-
-for _, child in ipairs(EmitBatch2:GetChildren()) do
-	if child:IsA("ParticleEmitter") then
-		child:Emit(4)
-	end
-end
-local a = Instance.new("Animation")
-a.AnimationId = "rbxassetid://" .. Animation
-local p = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(a)
-p:Play()
-end)
-
-local ToolName = "Weboom"
-local Animation = 15673683215
-
-local t = Instance.new("Tool")
-t.Name = ToolName
-t.RequiresHandle = false
-t.CanBeDropped = false
-t.Parent = game.Players.LocalPlayer.Backpack
-t.Activated:Connect(function()local sound = Instance.new("Sound")
-sound.SoundId = "rbxassetid://141679994"
-sound.Volume = 1
-sound.Parent = workspace
-sound:Play()
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local EmitBatch2 = ReplicatedStorage.Resources.Fang.RockExplode["GoodSmoke3"].emit:Clone()
-local player = game.Players.LocalPlayer
-local character = player.Character or player.CharacterAdded:Wait()
-
-EmitBatch2.Parent = character:WaitForChild("HumanoidRootPart")
-
-for _, child in ipairs(EmitBatch2:GetChildren()) do
-	if child:IsA("ParticleEmitter") then
-		child:Emit(4)
-	end
-end
-
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local EmitBatch2 = ReplicatedStorage.Resources.Fang.RockExplode["GoodSmoke3"].Attachment:Clone()
-local player = game.Players.LocalPlayer
-local character = player.Character or player.CharacterAdded:Wait()
-
-EmitBatch2.Parent = character:WaitForChild("HumanoidRootPart")
-
-for _, child in ipairs(EmitBatch2:GetChildren()) do
-	if child:IsA("ParticleEmitter") then
-		child:Emit(4)
-	end
-end
-
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local EmitBatch2 = ReplicatedStorage.Resources.Fang.RockExplode["GoodSmoke3"].smoke:Clone()
-local player = game.Players.LocalPlayer
-local character = player.Character or player.CharacterAdded:Wait()
-
-EmitBatch2.Parent = character:WaitForChild("HumanoidRootPart")
-
-for _, child in ipairs(EmitBatch2:GetChildren()) do
-	if child:IsA("ParticleEmitter") then
-		child:Emit(4)
-	end
-end
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local EmitBatch2 = ReplicatedStorage.Resources.Fang.GoodWind2["Part"].Attachment:Clone()
-local player = game.Players.LocalPlayer
-local character = player.Character or player.CharacterAdded:Wait()
-
-EmitBatch2.Parent = character:WaitForChild("HumanoidRootPart")
-
-for _, child in ipairs(EmitBatch2:GetChildren()) do
-	if child:IsA("ParticleEmitter") then
-		child:Emit(5)
-	end
-end
-
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local EmitBatch2 = ReplicatedStorage.Resources.Fang.General["General"].Attachment:Clone()
-local player = game.Players.LocalPlayer
-local character = player.Character or player.CharacterAdded:Wait()
-
-EmitBatch2.Parent = character:WaitForChild("HumanoidRootPart")
-
-for _, child in ipairs(EmitBatch2:GetChildren()) do
-	if child:IsA("ParticleEmitter") then
-		child:Emit(30)
-	end
-end
-local function setGreenLightColor(emitter)
-    if emitter:IsA("ParticleEmitter") then
-        -- Set the color to a gradient resembling light green
-        emitter.Color = ColorSequence.new{
-            ColorSequenceKeypoint.new(0, Color3.new(0.5, 1, 0.5)), -- Light green
-            ColorSequenceKeypoint.new(0.5, Color3.new(0.2, 1, 0.2)), -- Bright green
-            ColorSequenceKeypoint.new(1, Color3.new(0, 1, 0)) -- Pure green
-        }
-        -- Increase light emission to make the particles glow
-        emitter.LightEmission = 1
-    end
-end
-
-local boom1 = game.ReplicatedStorage.Resources.KJEffects["SpinningSmoke"].Smoke:Clone()
-boom1.Parent = game.Players.LocalPlayer.Character["Torso"]
-for _, child in ipairs(boom1:GetChildren()) do
-    if child:IsA("ParticleEmitter") then
-        setGreenLightColor(child) -- Apply green light color to the emitter
-        child:Emit(60) -- Emit particles
-    end
-end
-
-local leap1 = game.ReplicatedStorage.Resources.KJEffects["LeapParticles"].Leap:Clone()
-leap1.Parent = game.Players.LocalPlayer.Character["Torso"]
-for _, child in ipairs(leap1:GetChildren()) do
-    if child:IsA("ParticleEmitter") then
-        setGreenLightColor(child)
-        child:Emit(1)
-    end
-end
-
--- Repeat the same for all other particle effects
-local function cloneAndSetParticles(effect, parent, emitCount)
-    local clone = effect:Clone()
-    clone.Parent = parent
-    for _, child in ipairs(clone:GetChildren()) do
-        if child:IsA("ParticleEmitter") then
-            setGreenLightColor(child)
-            child:Emit(emitCount)
-        end
-    end
-end
-
-cloneAndSetParticles(game.ReplicatedStorage.Resources.KJEffects["spinnyweenyspinner"].Attachment, game.Players.LocalPlayer.Character["HumanoidRootPart"], 2)
-cloneAndSetParticles(game.ReplicatedStorage.Resources.KJEffects["spinnyweenyspinner"].Emit, game.Players.LocalPlayer.Character["HumanoidRootPart"], 2)
-cloneAndSetParticles(game.ReplicatedStorage.Resources.KJEffects["spinnerthing"].spinningparty, game.Players.LocalPlayer.Character["HumanoidRootPart"], 2)
-cloneAndSetParticles(game.ReplicatedStorage.Resources.KJEffects["spinnerthing"].spinningpartysmoke, game.Players.LocalPlayer.Character["HumanoidRootPart"], 2)
-cloneAndSetParticles(game.ReplicatedStorage.Resources.KJEffects["spinbeam"].beam2, game.Players.LocalPlayer.Character["HumanoidRootPart"], 2)
-cloneAndSetParticles(game.ReplicatedStorage.Resources.KJEffects["ColateralImapct"].HitTwo, game.Players.LocalPlayer.Character["HumanoidRootPart"], 2)
-cloneAndSetParticles(game.ReplicatedStorage.Resources.KJEffects["ColateralImapctTest"].HitTwo, game.Players.LocalPlayer.Character["HumanoidRootPart"], 2)
-cloneAndSetParticles(game.ReplicatedStorage.Resources.KJEffects["ColateralImapctTest2"].HitTwo, game.Players.LocalPlayer.Character["HumanoidRootPart"], 2)
-cloneAndSetParticles(game.ReplicatedStorage.Resources.KJEffects["fine...Emit"].EmitBatch2, game.Players.LocalPlayer.Character["Torso"], 1)
-cloneAndSetParticles(game.ReplicatedStorage.Resources.KJEffects["ImpactEffect2"].Attachment, game.Players.LocalPlayer.Character["Torso"], 3)
-cloneAndSetParticles(game.ReplicatedStorage.Resources.KJEffects["SpinningSmoke"].Smoke, game.Players.LocalPlayer.Character["Torso"], 20)
-cloneAndSetParticles(game.ReplicatedStorage.Resources.KJEffects["spinnerthing"].spinningpartysmoke, game.Players.LocalPlayer.Character["Torso"], 3)
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local EmitBatch2 = ReplicatedStorage.Resources.Fang.RockExplode["GoodSmoke3"].emit:Clone()
-local player = game.Players.LocalPlayer
-local character = player.Character or player.CharacterAdded:Wait()
-
-EmitBatch2.Parent = character:WaitForChild("HumanoidRootPart")
-
-for _, child in ipairs(EmitBatch2:GetChildren()) do
-	if child:IsA("ParticleEmitter") then
-		child:Emit(4)
-	end
-end
-
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local EmitBatch2 = ReplicatedStorage.Resources.Fang.RockExplode["GoodSmoke3"].Attachment:Clone()
-local player = game.Players.LocalPlayer
-local character = player.Character or player.CharacterAdded:Wait()
-
-EmitBatch2.Parent = character:WaitForChild("HumanoidRootPart")
-
-for _, child in ipairs(EmitBatch2:GetChildren()) do
-	if child:IsA("ParticleEmitter") then
-		child:Emit(4)
-	end
-end
-
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local EmitBatch2 = ReplicatedStorage.Resources.Fang.RockExplode["GoodSmoke3"].smoke:Clone()
-local player = game.Players.LocalPlayer
-local character = player.Character or player.CharacterAdded:Wait()
-
-EmitBatch2.Parent = character:WaitForChild("HumanoidRootPart")
-
-for _, child in ipairs(EmitBatch2:GetChildren()) do
-	if child:IsA("ParticleEmitter") then
-		child:Emit(4)
-	end
-end
-local location = game.ReplicatedStorage.Resources.Sorcerer["WallFX"].FirstSlam.Attachment
-local vfx = location:Clone()
-vfx.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
-
--- Emit particles for the first effect
-for _, child in ipairs(vfx:GetChildren()) do
-    if child:IsA("ParticleEmitter") then
-        -- Set the color to white
-        child.Color = ColorSequence.new(Color3.new(0, 255, 255)) -- White color
-        child:Emit(15)
-        child.Enabled = true
-    end
-end
-
--- Destroy the first effect after 0.3 seconds
-task.delay(0.3, function()
-    vfx:Destroy()
-end)
-
-
--- Second effect (Limitless Barrier Core BarrierFX)
-local location2 = game.ReplicatedStorage.Resources.Sorcerer["LimitlessBarrier"].Core.BarrierFX
-local vfx2 = location2:Clone()
-vfx2.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
-
--- Emit particles for the second effect
-for _, child in ipairs(vfx2:GetChildren()) do
-    if child:IsA("ParticleEmitter") then
-        -- Set the color to white
-        child.Color = ColorSequence.new(Color3.new(0, 255, 255)) -- White color
-        child:Emit(15)
-        child.Enabled = true
-    end
-end
-
--- Destroy the second effect after 1 second
-task.delay(1, function()
-    vfx2:Destroy()
-end)
-
-
--- Third effect (Limitless Barrier Core Appear)
-local location3 = game.ReplicatedStorage.Resources.Sorcerer["LimitlessBarrier"].Core.Appear
-local vfx3 = location3:Clone()
-vfx3.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
-
--- Emit particles for the third effect
-for _, child in ipairs(vfx3:GetChildren()) do
-    if child:IsA("ParticleEmitter") then
-        -- Set the color to white
-        child.Color = ColorSequence.new(Color3.new(0, 255, 255)) -- White color
-        child:Emit(15)
-        child.Enabled = true
-    end
-end
-
--- Destroy the third effect after 1 second (you can adjust the timing as needed)
-task.delay(1, function()
-    vfx3:Destroy()
-end)
-local a = Instance.new("Animation")
-a.AnimationId = "rbxassetid://" .. Animation
-local p = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(a)
-p:Play()
-end)
-
-local ToolName = "Trinity Tear (WIP)"
-local Animation = 18897119503
-
-local t = Instance.new("Tool")
-t.Name = ToolName
-t.RequiresHandle = false
-t.CanBeDropped = false
-t.Parent = game.Players.LocalPlayer.Backpack
-t.Activated:Connect(function()local sound = Instance.new("Sound")
-sound.SoundId = "rbxassetid://365003340"
-sound.Volume = 1
-sound.Parent = workspace
-sound:Play()
-local player = game.Players.LocalPlayer
-local character = player.Character or player.CharacterAdded:Wait()
-local humanoid = character:WaitForChild("Humanoid")
-local camera = workspace.CurrentCamera
-
-local speed = 0.1 -- How fast the health reduces (seconds between each health reduction)
-local duration = 2 -- Total time to keep reducing health (in seconds)
-local damageAmount = 1 -- The amount of health to reduce on each hit
-
-
-local function updateHealthText(dummyHumanoid)
-    local billboardGui = dummyHumanoid.Parent:FindFirstChild("Head"):FindFirstChild("BillboardGui")
-    if billboardGui then
-        local textLabel = billboardGui:FindFirstChild("TextLabel")
-        if textLabel then
-            local currentHealth = dummyHumanoid.Health
-            local maxHealth = dummyHumanoid.MaxHealth
-            local healthPercentage = math.floor((currentHealth / maxHealth) * 79)
-            textLabel.Text = healthPercentage .. "%"
-            textLabel.TextColor3 = Color3.fromRGB(255, 0, 0)
-        end
-    end
-end
-local function revertTextColor(dummyHumanoid)
-    local billboardGui = dummyHumanoid.Parent:FindFirstChild("Head"):FindFirstChild("BillboardGui")
-    if billboardGui then
-        local textLabel = billboardGui:FindFirstChild("TextLabel")
-        if textLabel then
-            textLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-        end
-    end
-end
-local function resetHealthIfZero(dummyHumanoid)
-    if dummyHumanoid.Health <= 0 then
-        dummyHumanoid.Health = dummyHumanoid.MaxHealth
-        updateHealthText(dummyHumanoid)
-    end
-end
-local function checkForNearbyCharacters()
-    for _, targetCharacter in pairs(workspace.Live:GetChildren()) do
-        if targetCharacter:IsA("Model") and targetCharacter:FindFirstChild("Humanoid") then
-            local targetHumanoid = targetCharacter:FindFirstChild("Humanoid")
-            local distance = (targetCharacter.HumanoidRootPart.Position - character.HumanoidRootPart.Position).magnitude
-            if targetCharacter ~= character and distance <= 10 then
-                targetHumanoid.Health = math.max(0, targetHumanoid.Health - damageAmount)
-                if targetHumanoid.Health == 0 then
-                     targetHumanoid.Health = targetHumanoid.MaxHealth
-                end
-                if targetCharacter.Name == "Weakest Dummy" then
-                    updateHealthText(targetHumanoid)
-                    resetHealthIfZero(targetHumanoid)
-                end
-            end
-        end
-    end
-end
-local function Damage()
-    local startTime = tick()
-    while tick() - startTime < duration do
-        checkForNearbyCharacters()
-        wait(speed)
-    end
-    for _, targetCharacter in pairs(workspace.Live:GetChildren()) do
-        if targetCharacter:IsA("Model") and targetCharacter.Name == "Weakest Dummy" and targetCharacter:FindFirstChild("Humanoid") then
-            local targetHumanoid = targetCharacter:FindFirstChild("Humanoid")
-            revertTextColor(targetHumanoid)
-        end
-    end
-end
-Damage()
-local a = Instance.new("Animation")
-a.AnimationId = "rbxassetid://" .. Animation
-local p = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(a)
-p:Play()
-end)
-
-local ToolName = "Aerial Flare"
-local Animation = 14406991505
-
-local debounce = false
-local t = Instance.new("Tool")
-t.Name = ToolName
-t.RequiresHandle = false
-t.CanBeDropped = false
-t.Parent = game.Players.LocalPlayer.Backpack
-t.Activated:Connect(function()local sound = Instance.new("Sound")
-sound.SoundId = "rbxassetid://17325675061"
-sound.Volume = 1
-sound.Parent = workspace
-sound:Play()
-local location = game.ReplicatedStorage.Resources.Sorcerer["WallFX"].FirstSlam.Attachment
-local vfx = location:Clone()
-vfx.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
-
--- Emit particles for the first effect
-for _, child in ipairs(vfx:GetChildren()) do
-    if child:IsA("ParticleEmitter") then
-        -- Set the color to white
-        child.Color = ColorSequence.new(Color3.new(161, 165, 162)) -- White color
-        child:Emit(15)
-        child.Enabled = true
-    end
-end
-
--- Destroy the first effect after 0.3 seconds
-task.delay(0.3, function()
-    vfx:Destroy()
-end)
-
-
--- Second effect (Limitless Barrier Core BarrierFX)
-local location2 = game.ReplicatedStorage.Resources.Sorcerer["LimitlessBarrier"].Core.BarrierFX
-local vfx2 = location2:Clone()
-vfx2.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
-
--- Emit particles for the second effect
-for _, child in ipairs(vfx2:GetChildren()) do
-    if child:IsA("ParticleEmitter") then
-        -- Set the color to white
-        child.Color = ColorSequence.new(Color3.new(218, 133, 65)) -- White color
-        child:Emit(15)
-        child.Enabled = true
-    end
-end
-
--- Destroy the second effect after 1 second
-task.delay(1, function()
-    vfx2:Destroy()
-end)
-
-
--- Third effect (Limitless Barrier Core Appear)
-local location3 = game.ReplicatedStorage.Resources.Sorcerer["LimitlessBarrier"].Core.Appear
-local vfx3 = location3:Clone()
-vfx3.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
-
--- Emit particles for the third effect
-for _, child in ipairs(vfx3:GetChildren()) do
-    if child:IsA("ParticleEmitter") then
-        -- Set the color to white
-        child.Color = ColorSequence.new(Color3.new(218, 133, 65)) -- White color
-        child:Emit(15)
-        child.Enabled = true
-    end
-end
-
--- Destroy the third effect after 1 second (you can adjust the timing as needed)
-task.delay(1, function()
-    vfx3:Destroy()
-end)
-local a = Instance.new("Animation")
-a.AnimationId = "rbxassetid://" .. Animation
-local p = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(a)
-p:Play()
-debounce = false
-end
-end)
