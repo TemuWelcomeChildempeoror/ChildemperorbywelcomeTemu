@@ -842,6 +842,7 @@ playerGui.DescendantAdded:Connect(function(descendant)
 end)
 
 findGuiAndSetText()
+
 end
 
 
